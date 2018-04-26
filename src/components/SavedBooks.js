@@ -10,8 +10,8 @@ class SavedBooks extends Component {
 
     render() {
         const currentlyShelf = this.props.books.filter((b) => b.shelf === 'currentlyReading')
-
-        console.log(currentlyShelf)
+        const wantShelf = this.props.books.filter((b) => b.shelf === 'wantToRead')
+        const readShelf = this.props.books.filter((b) => b.shelf === 'read')
 
         return(
             <div className="list-books">
@@ -24,7 +24,9 @@ class SavedBooks extends Component {
                     <h2 className="bookshelf-title">Currently Reading</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                            <BookCategory shelf='currently reading'/>
+                            {currentlyShelf.map((b) => (
+                                <BookCategory key={b.title} title={b.title} author={b.authors} image={b.imageLinks.smallThumbnail}/>
+                            ))}
                         </ol>
                     </div>
                     </div>
@@ -36,7 +38,9 @@ class SavedBooks extends Component {
                     <h2 className="bookshelf-title">Want to Read</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                            <BookCategory shelf='currently reading'/>
+                            {wantShelf.map((b) => (
+                                <BookCategory key={b.title} title={b.title} author={b.authors} image={b.imageLinks.smallThumbnail}/>
+                            ))}
                         </ol>
                     </div>
                     </div>
@@ -48,7 +52,9 @@ class SavedBooks extends Component {
                     <h2 className="bookshelf-title">Read</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                            <BookCategory shelf='currently reading'/>
+                            {readShelf.map((b) => (
+                                <BookCategory key={b.title} title={b.title} author={b.authors} image={b.imageLinks.smallThumbnail}/>
+                            ))}
                         </ol>
                     </div>
                     </div>
