@@ -6,6 +6,17 @@ import './App.css'
 
 class BooksApp extends React.Component {
   state = {
+    books: [],
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll()
+      .then((books) => {
+        this.setState(() => ({
+          books
+        }))
+        console.log(books);
+      })
   }
 
   render() {
@@ -33,7 +44,9 @@ class BooksApp extends React.Component {
             </div>
           </div>
         ) : (
-          <SavedBooks />
+          <SavedBooks 
+            books = {this.state.books}
+            />
         )}
       </div>
     )
