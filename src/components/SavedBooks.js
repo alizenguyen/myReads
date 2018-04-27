@@ -7,10 +7,6 @@ class SavedBooks extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
     }
-    
-    updateBook = (book, shelf) => {
-        this.props.onChange(book, shelf)
-    }
 
     render() {
         const books = this.props.books

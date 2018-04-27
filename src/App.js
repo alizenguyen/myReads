@@ -26,7 +26,7 @@ class BooksApp extends React.Component {
   handleShelfChange = (book, shelf) => {
     BooksAPI.update(book, shelf)
       .then(() => {
-        this.handleBookeRetreival();
+        this.handleBooksRetreival();
       })
   }
 
@@ -57,7 +57,7 @@ class BooksApp extends React.Component {
         ) : (
           <SavedBooks 
             books={this.state.books}
-            onChange={this.handleBooksRetreival}
+            onChange={this.handleShelfChange}
             />
         )}
       </div>
