@@ -22,15 +22,15 @@ class SavedBooks extends Component {
                 <BookShelf 
                     title="Currently Reading"  
                     books={books.filter((book) => (book.shelf === "currentlyReading"))} 
-                    onChangeBook={this.props.onChange}/>
+                    onChangeBookShelf={this.props.onChange}/>
                 <BookShelf 
                     title="Want to Read"  
                     books={books.filter((book) => (book.shelf === "wantToRead"))}
-                    onChangeBook={this.props.onChange}/>
+                    onChangeBookShelf={this.props.onChange}/>
                 <BookShelf 
                     title="Read" 
                     books={books.filter((book) => (book.shelf === "read"))}
-                    onChangeBook={this.props.onChange}/>
+                    onChangeBookShelf={this.props.onChange}/>
             </div>
         )
     }

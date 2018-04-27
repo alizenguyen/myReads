@@ -9,7 +9,7 @@ class BookShelf extends Component {
     }
 
     updateBook = (book, shelf) => {
-        this.props.onChangeBook(book, shelf)
+        this.props.onChangeBookShelf(book, shelf)
     }
 
     render() {
