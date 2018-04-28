@@ -2,9 +2,30 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 class BookSearch extends React.Component {
-  
+  state = {
+    query: ''
+  }
+
+  updateQuery = (query) => {
+    this.setState( () => ({
+      query: query.trim()
+    }))
+  }
+
+  clearQuery = () => {
+    this.updateQuery('')
+  }
 
   render() {
+      const query = this.state
+      const {books} = this.props
+
+      const showBooks = query === ''
+        ? books
+        : books.filter((b) => (
+          b.title.toLowerCase().includes(query.toLowerCase())
+        ))
+
       return (
         <div className="search-books">
           <div className="search-books-bar">
