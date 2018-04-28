@@ -55,10 +55,14 @@ class BooksApp extends React.Component {
             </div>
           </div>
         ) : (
-          <SavedBooks 
-            books={this.state.books}
-            onChange={this.handleShelfChange}
-            />
+          <div>
+            <SavedBooks 
+              books={this.state.books}
+              onChange={this.handleShelfChange}
+              />
+            <button className="add-button">
+            </button>
+          </div>
         )}
       </div>
     )
