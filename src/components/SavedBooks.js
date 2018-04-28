@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
@@ -10,9 +9,6 @@ class SavedBooks extends Component {
 
     render() {
         const books = this.props.books
-        const currentlyShelf = books.filter((b) => b.shelf === 'currentlyReading')
-        const wantShelf = books.filter((b) => b.shelf === 'wantToRead')
-        const readShelf = books.filter((b) => b.shelf === 'read')
 
         return(
             <div className="list-books">

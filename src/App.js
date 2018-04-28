@@ -46,9 +46,9 @@ class BooksApp extends React.Component {
             </Link>
           </div>
         )} />
-        <Route path='/search' render={() => (
+        <Route path='/search' render={(history) => (
           <div>
-            <BookSearch />
+            <BookSearch allBooks={this.state.books}/>
           </div>
         )} />
       </div>
