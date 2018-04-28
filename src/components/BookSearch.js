@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import * as BooksAPI from '../BooksAPI'
 import { Link } from 'react-router-dom'
 import BookCategory from './BookCategory'
@@ -17,14 +17,13 @@ class BookSearch extends React.Component {
     console.log(query)
     this.handleSearch(query)
   }
-
-  //Function that 
-
+  
   //Functiont hat handles the search API and changes the state of of books
   handleSearch = (query) => {
     BooksAPI.search(query)
       .then((books) => {
         if(books.length > 0) {
+          console.log(books)
           this.setState(() => {
             return {books: books}
           })
