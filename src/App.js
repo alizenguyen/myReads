@@ -3,6 +3,7 @@ import * as BooksAPI from './BooksAPI'
 import SavedBooks from './components/SavedBooks'
 import BookSearch from './components/BookSearch'
 import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -40,8 +41,9 @@ class BooksApp extends React.Component {
               books={this.state.books}
               onChange={this.handleShelfChange}
               />
-            <button className="add-button">
-            </button>
+            <Link to='/search'>
+              <button className="add-button"></button>
+            </Link>
           </div>
         )} />
         <Route path='/search' render={() => (
