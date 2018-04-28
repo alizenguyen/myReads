@@ -35,13 +35,6 @@ class BookSearch extends React.Component {
 
   render() {
       const query = this.state
-      const {books} = this.props
-
-      // const showBooks = query === ''
-      //   ? books
-      //   : books.filter((b) => (
-      //     b.title.toLowerCase().includes(query.toLowerCase())
-      //   ))
 
       return (
         <div className="search-books">
@@ -55,7 +48,7 @@ class BookSearch extends React.Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-              {this.state.query > 0 && books.map((b) => (
+              {this.state.books.map((b) => (
                   <BookCategory book={b} key={b.title} title={b.title} author={b.authors} image={b.imageLinks.smallThumbnail} onShelfChange={(shelf) => {this.updateBook(b, shelf)}}/>
               ))}
             </ol>
