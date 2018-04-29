@@ -20,7 +20,8 @@ class BookSearch extends React.Component {
   
   //Functiont hat handles the search API and changes the state of of books
   handleSearch = (query) => {
-    BooksAPI.search(query)
+    if (query.length > 0) {
+      BooksAPI.search(query)
       .then((books) => {
         if(books.length > 0) {
           console.log(books)
@@ -31,6 +32,7 @@ class BookSearch extends React.Component {
           this.setState({books: [], query: ''})
         }
       })
+    }
   }
 
   render() {
@@ -48,8 +50,8 @@ class BookSearch extends React.Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-              {this.state.books.map((b) => (
-                  <BookCategory book={b} key={b.title} title={b.title} author={b.authors} image={b.imageLinks.smallThumbnail} onShelfChange={(shelf) => {this.updateBook(b, shelf)}}/>
+              {this.state.query.length !== 0 && this.state.books.map((b) => (
+                  <BookCategory book={b} key={b.id} title={b.title} author={b.authors} image={b.imageLinks.smallThumbnail} onShelfChange={(shelf) => {this.updateBook(b, shelf)}}/>
               ))}
             </ol>
           </div>
