@@ -1,9 +1,15 @@
 import React from 'react'
 import * as BooksAPI from '../BooksAPI'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import BookCategory from './BookCategory'
 
 class BookSearch extends React.Component {
+  static propTypes = {
+    allBooks: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+  }
+
   state = {
     books: [],
     query: ''
@@ -18,18 +24,19 @@ class BookSearch extends React.Component {
     this.handleSearch(query)
   }
 
-  //Function that adds shelf property to all books
+  //Function that adds shelf property to all books then matches shelf if already added
   searchShelfChange = (books) => {
-    let allBooks = this.props.allBooks
+    const allBooks = this.props.allBooks
 
     for(let book of books) {
       book.shelf='none'
     }
 
+    //Will iterate into search result object and saved books object and update the same state on both search page and main application page
     for (let book of books) {
-      for (let c of allBooks) {
-        if (c.title === book.title) {
-          book.shelf = c.shelf
+      for (let b of allBooks) {
+        if (book.title === b.title) {
+          book.shelf = b.shelf
         }
       }
     }
@@ -37,9 +44,9 @@ class BookSearch extends React.Component {
     return books
   }
 
-  //Function the filters books with imageLinks
+  //Function the filters through books with imageLinks and authors
   filterBooks = (books) => {
-    return books.filter((book) => (book.imageLinks))
+    return books.filter((book) => (book.imageLinks)).filter((book) => (book.authors));
   }
 
   //Calls on the onchange function and alerts the user that book has been added
@@ -82,7 +89,7 @@ class BookSearch extends React.Component {
       return (
         <div className="search-books">
           <div className="search-books-bar">
-            <Link to='/' className="close-search" onClick={() => this.setState({ showSearchPage: false })}>
+            <Link to='/' className="close-search">
               close
             </Link>
             <div className="search-books-input-wrapper">

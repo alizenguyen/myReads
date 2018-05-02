@@ -5,8 +5,11 @@ import BookCategory from './BookCategory'
 class BookShelf extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
+        title: PropTypes.string.isRequired,
+        onChangeBookShelf: PropTypes.func.isRequired
     }
 
+    //Function that makes an API to update the shelf of a saved book from parent component
     updateBook = (book, shelf) => {
         this.props.onChangeBookShelf(book, shelf)
     }

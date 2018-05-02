@@ -5,6 +5,7 @@ import BookShelf from './BookShelf'
 class SavedBooks extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
+        onChange: PropTypes.func.isRequired
     }
 
     render() {

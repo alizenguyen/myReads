@@ -11,10 +11,12 @@ class BooksApp extends React.Component {
     books: [],
   }
 
+  //Function will retreive all books when component is invoed into the DOM
   componentDidMount() {
     this.handleBooksRetreival();
   }
 
+  //Function that makes an API to retreive all saved books
   handleBooksRetreival = () => {
     BooksAPI.getAll()
       .then((books) => {
@@ -25,6 +27,7 @@ class BooksApp extends React.Component {
     })
   }
 
+  //Function that makes an API to update the shelf of a saved book
   handleShelfChange = (book, shelf) => {
     BooksAPI.update(book, shelf)
       .then(() => {
@@ -48,7 +51,10 @@ class BooksApp extends React.Component {
         )} />
         <Route path='/search' render={(history) => (
           <div>
-            <BookSearch allBooks={this.state.books} onChange={this.handleShelfChange}/>
+            <BookSearch 
+              allBooks={this.state.books} 
+              onChange={this.handleShelfChange}
+              />
           </div>
         )} />
       </div>
