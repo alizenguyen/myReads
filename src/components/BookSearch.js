@@ -17,14 +17,57 @@ class BookSearch extends React.Component {
     console.log(query)
     this.handleSearch(query)
   }
+
+  //Function that adds shelf property to all books
+  searchShelfChange = (books) => {
+    let allBooks = this.props.allBooks
+
+    for(let book of books) {
+      book.shelf='none'
+    }
+
+    for (let book of books) {
+      for (let c of allBooks) {
+        if (c.title === book.title) {
+          book.shelf = c.shelf
+        }
+      }
+    }
+
+    return books
+  }
+
+  //Function the filters books with imageLinks
+  filterBooks = (books) => {
+    return books.filter((book) => (book.imageLinks))
+  }
+
+  //Calls on the onchange function and alerts the user that book has been added
+  bookRefresh = (b, shelf) => {
+    this.props.onChange(b, shelf);
+
+    switch(shelf) {
+      case 'wantToRead':
+        alert('Book Added - Want to Read');
+        break;
+      case 'currentlyReading':
+        alert('Book Added - Currently Reading');
+        break;
+      default:
+        alert('Book Added - Read')
+    }
+
+  }
   
-  //Functiont hat handles the search API and changes the state of of books
+  //Function hat handles the search API and changes the state of of books
   handleSearch = (query) => {
     if (query.length > 0) {
       BooksAPI.search(query)
       .then((books) => {
         if(books.length > 0) {
-          console.log(books)
+          books = this.filterBooks(books);
+          books = this.searchShelfChange(books);
+          console.log(books);
           this.setState(() => {
             return {books: books}
           })
@@ -36,8 +79,6 @@ class BookSearch extends React.Component {
   }
 
   render() {
-      const query = this.state
-
       return (
         <div className="search-books">
           <div className="search-books-bar">
@@ -51,7 +92,7 @@ class BookSearch extends React.Component {
           <div className="search-books-results">
             <ol className="books-grid">
               {this.state.query.length !== 0 && this.state.books.map((b) => (
-                  <BookCategory book={b} key={b.id} title={b.title} author={b.authors} image={b.imageLinks.smallThumbnail} onShelfChange={(shelf) => {this.updateBook(b, shelf)}}/>
+                  <BookCategory book={b} key={b.id} title={b.title} author={b.authors} image={b.imageLinks.smallThumbnail} onShelfChange={(shelf) => {this.bookRefresh(b, shelf)}}/>
               ))}
             </ol>
           </div>
