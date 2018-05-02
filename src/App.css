@@ -124,7 +124,11 @@ body, .app {
 }
 
 .search-books-results {
-  padding: 80px 10px 20px;
+  padding: 40px 10px 20px;
+}
+
+.now-showing {
+  margin: 90px 0px 0px 40px;
 }
 
 /* books grid */

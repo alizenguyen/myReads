@@ -96,13 +96,20 @@ class BookSearch extends React.Component {
               <input type="text" placeholder="Search by title or author" onChange={(event) => this.updateQuery(event.target.value)}/>
             </div>
           </div>
-          <div className="search-books-results">
-            <ol className="books-grid">
-              {this.state.query.length !== 0 && this.state.books.map((b) => (
-                  <BookCategory book={b} key={b.id} title={b.title} author={b.authors} image={b.imageLinks.smallThumbnail} onShelfChange={(shelf) => {this.bookRefresh(b, shelf)}}/>
-              ))}
-            </ol>
-          </div>
+
+          {this.state.books.length > 0 && (
+              <div>
+                  <p className="now-showing"> Now showing {this.state.books.length} book results. </p>
+                  <div className="search-books-results">
+                  <ol className="books-grid">
+                    {this.state.query.length !== 0 && this.state.books.map((b) => (
+                        <BookCategory book={b} key={b.id} title={b.title} author={b.authors} image={b.imageLinks.smallThumbnail} onShelfChange={(shelf) => {this.bookRefresh(b, shelf)}}/>
+                    ))}
+                  </ol>
+                  </div>
+              </div>
+          )}
+
         </div>
       )
     }
