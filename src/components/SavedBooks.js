@@ -13,8 +13,8 @@ class SavedBooks extends Component {
 
         return(
             <div className="list-books">
-                <div className="list-books-title">
-                    <h1>MY LIBRARY</h1>
+                <div className="jumbotron">
+                    <h1 className="jumbotron-text">My Library.</h1>
                 </div>
                 <BookShelf 
                     title="Currently Reading"  
