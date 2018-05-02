@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 class BookCategory extends Component {
     static propTypes = {
-        changeShelf: PropTypes.func.isRequired
+        onShelfChange: PropTypes.func.isRequired
     }
 
     //Function that makes an API with the target value to update the shelf of a saved book from parent component
